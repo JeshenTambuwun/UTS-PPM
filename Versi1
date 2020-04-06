@@ -1,0 +1,67 @@
+!DOCTYPE html>
+<html>
+<head>
+	<title>NOMOR 2</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript">
+        function Print(){
+            var n = document.getElementById('pinjaman').value;
+            var x = document.getElementById('waktupinjam').value;
+    
+            if (parseInt(x)>=1 && parseInt(x)<=6) {
+                var hasil = parseInt(n) + (parseInt(n) * 0.02 * parseInt(x))
+                document.getElementById('total').innerHTML =parseInt(hasil);
+            }
+            else if (parseInt(x)>=7 && parseInt(x)<=12) {
+                var hasil = parseInt(n) + (parseInt(n) * 0.015 * parseInt(x))
+                document.getElementById('total').innerHTML =parseInt(hasil);
+            }
+            else if (parseInt(x)>12) {
+                var hasil = parseInt(n) + (parseInt(n) * 0.01 * parseInt(x))
+                document.getElementById('total').innerHTML =parseInt(hasil);
+            }			
+        }
+    </script>
+</head>
+<body>
+    <div data-role="page" id="win1">
+        <div data-role="header"><h1>Nomor 2</h1></div>
+        <div role="main" class="ui-content">
+                <div class="ui-grid-a ui-responsive">
+                    <div class="ui-block-a">
+                        <div class="ui-body ui-body-d">
+                            <label for="pinjaman">Pinjaman</label>
+                            <input type="number" name="pinjaman" id="pinjaman" placeholder="pinjaman">				
+                        </div>
+                    </div>
+                    <div class="ui-block-a">
+                        <div class="ui-body ui-body-d">
+                            <label for="waktupinjam">Waktu:</label>
+                            <input type="number" name="waktupinjam" id="waktupinjam">				
+                        </div>
+                    </div>
+                    <div class="ui-block-a">
+                        <div class="ui-body ui-body-d">
+                            <button class="ui-btn" onclick="Print();">Submit</button>			
+                        </div>
+                    </div>			
+                </div>
+                <div>
+                    <p>Pengembalian : <span id="total"></span></p>
+                </div>
+                
+         </div>
+        <div data-role="footer" data-position="fixed"><a href="#win2" data-transition="fade">Pindah Halaman 2</a></div>
+        </div>
+	
+
+
+</body>
+
+
+
+
+</html>
