@@ -1,0 +1,129 @@
+!DOCTYPE html>
+<html>
+<head>
+	<title>NOMOR 2</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript">
+        $(document).on("pagebeforeshow","#win2",function(){ // When entering pagetwo
+        alert("pagetwo is about to be shown");
+        });
+        $(document).on("pageshow","#win2",function(){ // When entering pagetwo
+        alert("pagetwo is now shown");
+        });
+        function Print(){
+            var n = document.getElementById('pinjaman').value;
+            var x = document.getElementById('waktupinjam').value;
+    
+            if (parseInt(x)>=1 && parseInt(x)<=6) {
+                var hasil = parseInt(n) + (parseInt(n) * 0.02 * parseInt(x))
+                document.getElementById('total').innerHTML =parseInt(hasil);
+            }
+            else if (parseInt(x)>=7 && parseInt(x)<=12) {
+                var hasil = parseInt(n) + (parseInt(n) * 0.015 * parseInt(x))
+                document.getElementById('total').innerHTML =parseInt(hasil);
+            }
+            else if (parseInt(x)>12) {
+                var hasil = parseInt(n) + (parseInt(n) * 0.01 * parseInt(x))
+                document.getElementById('total').innerHTML =parseInt(hasil);
+            }	
+            
+		var isidetail = "<p>Biaya Per Bulan : "+ parseInt((hasil)/parseInt(x))+"</p>"
+
+		var ul = $("ul");
+		var row = "<li class = 'ui-li-static ui-body-inherit'><a href='#perhitungan' onclick='test();'> Pinjaman : "+parseInt(n)+" Waktu : "+ parseInt(x) + " Yang Harus di Bayar : " + parseInt(hasil)+"</a></li>";
+
+
+		var detail ="<div data-role='collapsible' class='ui-collapsible ui-collapsible-inset ui-corner-all ui-collapsible-themed-content'><h1 class='ui-collapsible-heading'><a href='#' class='ui-collapsible-heading-toggle ui-btn ui-btn-icon-left ui-btn-inherit'>DETAIL PAGE<span class='ui-collapsible-heading-status'> click to collapse contents</span></a></h1><div class='ui-collapsible-content ui-body-inherit' aria-hidden='false'>"+isidetail+"</div></div>"
+
+
+
+		ul.html(ul.html()+detail);
+        }
+    </script>
+</head>
+
+<body>
+    <div data-role="page" id="win1" data-theme="b">
+        <div data-role="header"><h1>Nomor 2</h1>
+            <div data-role="navbar">
+                    <ul>
+                        <li><a href="#" class="ui-btn-active">Halaman 1</a></li>
+                        <li><a href="#win2">Halaman 2</a></li>
+                    </ul>
+                </div>
+        </div>
+        <div role="main" class="ui-content">
+                <div class="ui-grid-a ui-responsive">
+                    <div class="ui-block-a">
+                        <div class="ui-body ui-body-d">
+                            <label for="pinjaman">Pinjaman</label>
+                            <input type="number" name="pinjaman" id="pinjaman" placeholder="pinjaman">				
+                        </div>
+                    </div>
+                    <div class="ui-block-a">
+                        <div class="ui-body ui-body-d">
+                            <label for="waktupinjam">Waktu:</label>
+                            <input type="number" name="waktupinjam" id="waktupinjam">				
+                        </div>
+                    </div>
+                    <div class="ui-block-a">
+                        <div class="ui-body ui-body-d">
+                            <button class="ui-btn" onclick="Print();">Submit</button>			
+                        </div>
+                    </div>			
+                </div>
+               
+                <div data-role="collapsible">
+                        <h4> Click Untuk Melihat Pengembalian</h4>
+                        <p>Pengembalian : <span id="total"></span></p>
+                 </div>
+                 <ul data-role="listview">
+
+                </ul>
+               
+         </div>
+        <div data-role="footer" ><a href="#win2" data-transition="fade">Pindah Halaman INFORMASI CICILAN</a></div>
+        </div>
+    
+       <!-- INI PANEL -->
+       <div data-role="panel" id="defaultpanel" data-theme="b">
+         
+        <div class="panel-content">
+          <h3>Detail Infomasi cicilan</h3>
+         <p> Perhitungan bunga mengikuti waktu pengembalian yang dipilih.  
+            1 – 6 Cicilan     : 2 % dari pinjaman 
+            7 – 12 Cicilan   : 1,5 % dari pinjaman 
+            >12 Cicilan   : 1 % dari pinjaman </p> 
+          <p>Contoh : Pinjaman  : 1.000.000, waktu pinjam : 6 Cicilan 
+            Total Pengembalian : 1.000.000 + (1.000.000 * 2% * 6) = 1.120.000 
+         </p>
+
+         
+          <a href="#demo-links" data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-inline="true">Close panel</a>
+        </div>
+      </div>
+</div>
+        
+        
+	<div data-role="page" id="win2" data-theme="a">
+        <div data-role="header"><h1>INFORMASI CICILAN</h1>
+            <div data-role="navbar">
+                    <ul>
+                        <li><a href="#win1" >Halaman 1</a></li>
+                        <li><a href="#" class="ui-btn-active">Halaman 2</a></li>
+                    </ul>
+                
+        <div role="main" class="ui-content">
+            <a href="#defaultpanel" data-role="button" data-inline="true" data-icon="bars">Panel</a>
+        </div>
+        <div data-role="footer" data-position="fixed"><a href="#win1" data-transition="fade">Pindah Halaman 1</a></div>
+
+    </div>
+
+
+</body>
+
+</html>
